@@ -1,0 +1,41 @@
+/* #region Global-Styling */
+
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+}
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+* {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* #endregion Global-Styling */
+
+
+/* #region Header-Styling */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* #endregion Header-Styling */
