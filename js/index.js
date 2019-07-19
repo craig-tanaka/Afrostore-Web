@@ -1,6 +1,7 @@
 const header = document.querySelector('header')
 const cartBtnPaths = document.querySelectorAll('.cart-btn path')
 const menuBtnPaths = document.querySelectorAll('.menu-btn path')
+const productArr = document.querySelectorAll('.product')
 
 window.addEventListener('scroll', (_event)=>{
     if ((document.body.scrollTop || document.documentElement.scrollTop) >= 12){
@@ -22,3 +23,9 @@ window.addEventListener('scroll', (_event)=>{
         })
     }
 },false)
+
+productArr.forEach(el => {
+    el.addEventListener('click', (__event)=>{
+        alert('Santoryou')
+    })
+})
