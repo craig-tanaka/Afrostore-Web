@@ -17,5 +17,8 @@ firebase_deploy:
  stage: deploy
  script:
   - firebase deploy --non-interactive --token $FIREBASE_DEPLOY_KEY
+ environment:
+  name: production
+  url: https://afrostore-141ed.web.app/
  only:
   - master
