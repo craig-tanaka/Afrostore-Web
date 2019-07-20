@@ -1,0 +1,17 @@
+image: node:latest
+
+before_script:
+ — npm prune
+ — npm install
+ — npm install -g firebase-tools
+
+stages:
+  — deploy
+
+cache:
+  paths:
+   — node_modules/
+  key: “$CI_BUILD_REPO”
+
+script:
+ — firebase deploy — token $FIREBASE_DEPLOY_KEY
