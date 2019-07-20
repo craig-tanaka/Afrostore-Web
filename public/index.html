@@ -3,64 +3,105 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <title>AfroStore</title>
 
-    <!-- update the version number as needed -->
     <script defer src="/__/firebase/6.3.1/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/6.3.1/firebase-auth.js"></script>
-    <script defer src="/__/firebase/6.3.1/firebase-database.js"></script>
-    <script defer src="/__/firebase/6.3.1/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/6.3.1/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
-    aminaye
+    <header class="fixed">
+      <nav class="mobile">
+          <svg class="menu-btn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              xmlns:krita="http://krita.org/namespaces/svg/krita"
+              xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" viewBox="0 0 173.52 184.32">
+              <defs />
+              <path id="shape0" transform="translate(9.16410418585392, 58.5484434096222)" fill="none" stroke="#000000"
+                  stroke-width="7.2" stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="2"
+                  d="M0 nanL1.75511e+09 nan" />
+              <path id="shape1" transform="translate(173.52, 90)" fill="none" stroke="#000000" stroke-width="28.8"
+                  stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="2" d="M0 nanL17.28 nan" />
+              <path id="shape2" transform="translate(4.32, 92.1599)" opacity="0.9" fill="none" stroke="#000000"
+                  stroke-width="9.36" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2.16"
+                  d="M0 0.0001L164.88 0" />
+              <path id="shape0" transform="matrix(1.0000000097438 0 0 1.00000002477076 4.32 138.959899999998)"
+                  opacity="0.9" fill="none" stroke="#000000" stroke-width="9.36" stroke-linecap="round"
+                  stroke-linejoin="miter" stroke-miterlimit="2.16" d="M0 0.0001L147.6 0" />
+              <path id="shape01" transform="matrix(1.00000000690723 0 0 1.00000006388161 4.32 46.0798999999936)"
+                  opacity="0.9" fill="none" stroke="#000000" stroke-width="9.36" stroke-linecap="round"
+                  stroke-linejoin="miter" stroke-miterlimit="2.16000008583069" d="M0 0.0001L147.6 0" />
+          </svg>
+          <svg version="1.1" class="cart-btn" id="Layer_1" opacity="0.8" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 363.2 319.5"
+              style="enable-background:new 0 0 363.2 319.5;" xml:space="preserve">
+              <path d="M359.8,150.3c-5.3-9.7-10.7-9.6-20.9-9.6c-21.8,0-43.6-0.5-65.4-0.3c-23.2,0.2-46.5,0.1-69.7,0.1H34.8
+c-6.1,0-14.3-0.9-21.3,0.5c-4.7,1-8.8,3.1-11.3,7.4c-2.1,3.7-2.5,8.2-2.2,12.4c0.4,5.9,2,11.9,6.1,16.1c2.5,2.7,5.9,4.4,9.6,4.7
+c2.3,0.1,7.5-2.6,8,0.7c2.2,14.1,16.1,104.5,20.7,120.2c5,17,14,17,14,17h241c16-6,16-16,16-16c5.8-33.8,11.6-67.7,17.5-101.5
+c0.9-5,0.9-11.4,2.8-16.2c2.7-6.9,18.7-6,24-12.5S363.6,157.3,359.8,150.3z M72.1,273l-8.6-82c14-19,26,0,26,0s5.4,52,8.6,82
+C87.6,299.5,72.1,273,72.1,273z M158.9,273c-13.3,26.5-26,0-26,0v-82c16-19,26,0,26,0V273z M226.9,273c-13.3,26.5-26,0-26,0v-82
+c16-19,26,0,26,0V273z M286.8,273c-16,26.5-26,0-26,0l8.6-82c18-19,26,0,26,0S290,243,286.8,273z" />
+              <path d="M56.3,125L56.3,125c4.5,0,8.4-3.1,9.4-7.4l16.9-70.1c0.3-1.1,0.7-2.2,1.4-3.2c2.4-3.7,5.6-6.8,9.4-9.1
+c1.4-0.8,3.1-1.2,4.7-1.2h30.1c3.6,0,6.9,2,8.6,5.2c1.1,2,2.8,3.6,4.8,4.7c1.4,0.8,3,1.2,4.6,1.1h70.9c0,0,3.5,0,7.6-6.6
+c1.8-2.8,4.8-4.5,8.1-4.4h29.4c1.4,0,2.9,0.3,4.1,0.9c3.3,1.6,8.4,4.8,12.7,14.1c0.5,1.1,2,3.4,2,4.6c0.7,13.9,9.9,49.1,14,64.2
+c1.1,4.2,5,7.2,9.3,7.1h0.4c5.3,0,9.7-4.3,9.7-9.7c0-0.8-0.1-1.5-0.3-2.2l-16.1-67.7c-0.1-0.3-0.2-0.6-0.3-0.9
+c-6.2-16.6-20.5-28.8-37.9-32.3c-0.7-0.1-1.3-0.2-2-0.2h-28.3c-3.5,0-6.8-2-8.4-5.1c-0.6-1-1.2-2-1.9-3c-1.8-2.4-4.7-3.9-7.7-3.9
+h-63.6c-2.2,0-4.4,0.8-6.1,2.1c-1.8,1.4-3.3,3.1-4.5,5c-1.6,2.9-4.7,4.8-8.1,4.8H97.9c-1.3,0-2.6,0.3-3.8,0.8
+C87.5,15.6,66.2,26,61.9,42c-5.2,14-12,52.5-15.2,71.7c-0.9,5.3,2.7,10.3,7.9,11.1C55.3,125,55.8,125,56.3,125z" />
+          </svg>
+      </nav>
+  </header>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+  <main>
+      <Section class="landing-sec">
+          <h3 class="body">Our Favourites</h3>
+          <button class="discover-btn">Discover</button>
+      </Section>
+      <section class="main-sec">
+          <div class="header">
+              <div class="categories active">Recommended</div>
+              <div class="categories">What's Hot</div>
+              <div class="categories">What's New</div>
+              <div class="categories">Our Picks</div>
+              <div class="categories">Category</div>
+          </div>
 
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
+          <div class="body padding2">
+              <div class="row">
+                  <div class="product">
+                      <img src="./img/trans.png" alt="">
+                      <p class="product-name">Heels</p>
+                  </div>
+                  <div class="product">
+                      <img src="./img/airpods-cellphone-cellular-telephone-788946.jpg" alt="">
+                      <p class="product-name">AirPods</p>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="product">
+                      <img src="./img/airpods-cellphone-cellular-telephone-788946.jpg" alt="">
+                      <p class="product-name">AirPods</p>
+                  </div>
+                  <div class="product">
+                      <img src="./img/trans.png" alt="">
+                      <p class="product-name">Heels</p>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="product">
+                      <img src="./img/fashion-footwear-high-heels-40377.jpg" alt="">
+                      <p class="product-name">Heels</p>
+                  </div>
+                  <div class="product">
+                      <img src="./img/airpods-cellphone-cellular-telephone-788946.jpg" alt="">
+                      <p class="product-name">AirPods</p>
+                  </div>
+              </div>
+
+          </div>
+      </section>
+  </main>
+
+  <script src="./js/index.js"></script>
   </body>
 </html>
