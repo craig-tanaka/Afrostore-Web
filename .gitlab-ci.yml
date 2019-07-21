@@ -14,13 +14,12 @@ cache:
    - node_modules/
   key: “$CI_BUILD_REPO”
 
-git_check:
+project_build:
  stage: build
  script: 
  - echo "----------------- Starting Deploy -----------------"
 #  - git rev-parse --is-inside-work-tree
- - cd "$CI_PROJECT_DIR"/public/gi
- - ls 
+ - cd "$CI_PROJECT_DIR"/public/gi && ls 
  - cp "$CI_PROJECT_DIR"/src/index.html "$CI_PROJECT_DIR"/public/index.html
  - ls
  - echo "----------------- Starting Deploy -----------------"
