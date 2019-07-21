@@ -19,7 +19,7 @@ git_check:
  script: 
  - echo "----------------- Starting Deploy -----------------"
 #  - git rev-parse --is-inside-work-tree
- - cd "$CI_PROJECT_DIR"/public/
+ - cd "$CI_PROJECT_DIR"/public/gi
  - ls 
  - cp "$CI_PROJECT_DIR"/src/index.html "$CI_PROJECT_DIR"/public/index.html
  - ls
