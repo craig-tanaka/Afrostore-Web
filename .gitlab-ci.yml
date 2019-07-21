@@ -17,14 +17,20 @@ cache:
 git_check:
  stage: build
  script: 
-  - echo "hello world"
+ - echo "----------------- Starting Deploy -----------------"
+#  - git rev-parse --is-inside-work-tree
+ - cd "$CI_PROJECT_DIR"/public/
+ - ls 
+ - cp "$CI_PROJECT_DIR"/src/index.html "$CI_PROJECT_DIR"/public/index.html
+ - ls
+ - echo "----------------- Starting Deploy -----------------"
 
-# firebase_deploy:
-#  stage: deploy
-#  script:
-#   - firebase deploy --non-interactive --token $FIREBASE_DEPLOY_KEY
-#  environment:
-#   name: production
-#   url: https://afrostore-141ed.web.app/
-#  only:
-#   - master
+firebase_deploy:
+ stage: deploy
+ script:
+  - firebase deploy --non-interactive --token $FIREBASE_DEPLOY_KEY
+ environment:
+  name: production
+  url: https://afrostore-141ed.web.app/
+ only:
+  - master
