@@ -1,0 +1,16 @@
+{
+  "name": "afrostore",
+  "version": "1.0.0",
+  "description": "The official repo for the afrostore web-app",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanxyRogue/Afrostore-Web.git"
+  },
+  "author": "Craig Tanaka Mudzingwa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TanxyRogue/Afrostore-Web/issues"
+  },
+  "homepage": "https://github.com/TanxyRogue/Afrostore-Web#readme"
+}
