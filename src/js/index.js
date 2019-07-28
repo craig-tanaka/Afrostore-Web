@@ -29,3 +29,9 @@ productArr.forEach(el => {
         alert('Santoryou has')
     })
 })
+
+db.collection("users").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        alert(`${doc.id} => ${doc.data()}`);
+    });
+});
