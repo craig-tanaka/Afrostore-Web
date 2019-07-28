@@ -1,11 +1,11 @@
-const header = document.querySelector('header')
+const nav = document.querySelector('nav')
 const cartBtnPaths = document.querySelectorAll('.cart-btn path')
 const menuBtnPaths = document.querySelectorAll('.menu-btn path')
 const productArr = document.querySelectorAll('.product')
 
 window.addEventListener('scroll', (_event)=>{
     if ((document.body.scrollTop || document.documentElement.scrollTop) >= 12){
-        header.style.backgroundColor = "var(--blacks)"
+        nav.style.backgroundColor = "var(--blacks)"
         cartBtnPaths.forEach((el) => {
             el.style.fill = "white"
         })
@@ -14,7 +14,7 @@ window.addEventListener('scroll', (_event)=>{
         })
     }
     else{
-        header.style.backgroundColor = "white"
+        nav.style.backgroundColor = "white"
         cartBtnPaths.forEach((el) => {
             el.style.fill = "var(--blacks)"
         })
@@ -26,6 +26,6 @@ window.addEventListener('scroll', (_event)=>{
 
 productArr.forEach(el => {
     el.addEventListener('click', (__event)=>{
-        alert('Santoryou')
+        alert('Santoryou has')
     })
 })
