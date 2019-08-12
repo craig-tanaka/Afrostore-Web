@@ -11,13 +11,18 @@
       "**/node_modules/**"
     ],
     "headers": [
-      { 
-        "source":"**", 
-        "headers": [{
-          "key": "Cache-Control", 
-          "value": "no-cache"
-        }] 
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
       }
     ]
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }
