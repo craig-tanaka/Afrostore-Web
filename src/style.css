@@ -68,10 +68,21 @@ ul {
 /* #region Index-Page*/
     /* #region Header-Styling */
 
+    header {
+        padding: 1rem 0;
+        width: 100vw;
+        z-index: 1;
+        border-radius: 5px;
+        /* border: 1px solid black; */
+    }
+    
     nav {
+        height: 4rem;
+        width: 100vw;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        z-index: 1
     }
 
     nav.mobile{
@@ -208,16 +219,15 @@ ul {
     }
     .main-sec .product{
         width: 45%;
-        position: relative;
-        overflow: hidden;
+        display: flex;
+        flex-direction: column;
     }
     .main-sec .product img{
         width: 100%;
         height: 100%;
+        object-fit: contain;
     }
     .main-sec .product > p{
-        position: absolute;
-        bottom: 0;
         width: 100%;
         text-align: center;
     }
