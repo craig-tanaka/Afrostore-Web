@@ -4,6 +4,8 @@ const nav = document.querySelector('nav');
 const cartBtnPaths = document.querySelectorAll('.cart-btn path');
 const menuBtnPaths = document.querySelectorAll('.menu-btn path');
 const productArr = document.querySelectorAll('.product');
+const mainSec = document.querySelector('.main-sec');
+
 
 let newProductsSnapShot = {}
 const db = firebase.firestore();
@@ -29,10 +31,17 @@ window.addEventListener('scroll', (_event)=>{
             el.style.stroke = 'var(--blacks)';
         });
     }
+
+    if(document.documentElement.scrollTop >= mainSec.offsetTop){
+        if(nav.childElementCount != 3) 
+            nav.children[0].insertAdjacentHTML('afterend', `<h3 style="color: white;">${document.querySelector('.categories, .active').innerHTML}</h3>`);
+    }else{
+        if (nav.childElementCount == 3) nav.removeChild(nav.children[1]);
+    }
 },false);
 productArr.forEach(el => {
     el.addEventListener('click', (__event)=>{
-        alert('Santoryou has');
+        alert('clicks');
     });
 });
 
@@ -47,7 +56,7 @@ function getRecommended() {
     });  
 }
 function getNew() {
-    db.collection("new").get()
+    db.collection("new").orderBy("UploadTimestamp", "desc").limit(6).get()
         .then(querySnapshot=>{
             alert('Logging products ...')
             newProductsSnapShot = querySnapshot;
