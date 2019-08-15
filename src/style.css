@@ -232,6 +232,23 @@ ul {
         text-align: center;
     }
     /* #endregion MainSection-Styling */
+
+    .search-container{
+        position: fixed;
+        right: 2rem;
+        bottom: 1rem;
+
+        background-color: black;
+        padding: 1rem;
+        border-radius: 50%;
+        box-shadow: 1px 1px 8px 1px rgb(57, 57, 88);
+        width: max-content;
+    }
+    .search-container > img{
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
 /* #endregion Index-Page*/
 
 /* #region Product-Page*/
