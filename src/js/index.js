@@ -5,22 +5,29 @@ const cartBtnPaths = document.querySelectorAll('.cart-btn path');
 const menuBtnPaths = document.querySelectorAll('.menu-btn path');
 const productArr = document.querySelectorAll('.product');
 const mainSec = document.querySelector('.main-sec');
+const searchBtn = document.querySelector('#search-btn');
+const searchInput = document.querySelector('#search-input');
+
+
+const SearchStatus = {
+    CLOSED : 'closed',
+    OPEN : 'open'
+}
 
 
 let newProductsSnapShot = {}
-const db = firebase.firestore();
-const storage = firebase.storage();
-const bucket = storage.bucket_.bucket;
+let searchStatus = SearchStatus.CLOSED;
 
 window.addEventListener('scroll', (_event)=>{
     if ((document.body.scrollTop || document.documentElement.scrollTop) >= 12){
-        nav.style.backgroundColor = "var(--blacks)";
+        nav.style.backgroundColor = "RGB(17, 17, 17)";
         cartBtnPaths.forEach((el) => {
             el.style.fill = "white";
         });
         menuBtnPaths.forEach((el)=>{
             el.style.stroke = 'white';
         });
+        searchInput.style.color = 'white';
     }
     else{
         nav.style.backgroundColor = "white";
@@ -30,13 +37,7 @@ window.addEventListener('scroll', (_event)=>{
         menuBtnPaths.forEach((el)=>{
             el.style.stroke = 'var(--blacks)';
         });
-    }
-
-    if(document.documentElement.scrollTop >= mainSec.offsetTop){
-        if(nav.childElementCount != 3) 
-            nav.children[0].insertAdjacentHTML('afterend', `<h3 style="color: white;">${document.querySelector('.categories, .active').innerHTML}</h3>`);
-    }else{
-        if (nav.childElementCount == 3) nav.removeChild(nav.children[1]);
+        searchInput.style.color = 'black';
     }
 },false);
 productArr.forEach(el => {
