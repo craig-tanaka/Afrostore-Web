@@ -1,22 +1,16 @@
 /*jshint esversion: 6 */
 
 const nav = document.querySelector('nav');
-const cartBtnPaths = document.querySelectorAll('.cart-btn path');
-const menuBtnPaths = document.querySelectorAll('.menu-btn path');
+const cartBtnPaths = document.querySelectorAll('#cart-btn path');
+const menuBtnPaths = document.querySelectorAll('#menu-btn line');
+const searchBtnPaths = document.querySelectorAll('#search-btn path');
 const productArr = document.querySelectorAll('.product');
 const mainSec = document.querySelector('.main-sec');
 const searchBtn = document.querySelector('#search-btn');
 const searchInput = document.querySelector('#search-input');
 
 
-const SearchStatus = {
-    CLOSED : 'closed',
-    OPEN : 'open'
-}
-
-
 let newProductsSnapShot = {}
-let searchStatus = SearchStatus.CLOSED;
 
 window.addEventListener('scroll', (_event)=>{
     if ((document.body.scrollTop || document.documentElement.scrollTop) >= 12){
@@ -26,6 +20,9 @@ window.addEventListener('scroll', (_event)=>{
         });
         menuBtnPaths.forEach((el)=>{
             el.style.stroke = 'white';
+        });
+        searchBtnPaths.forEach((el)=>{
+            el.style.fill = 'white';
         });
         searchInput.style.color = 'white';
     }
@@ -37,7 +34,10 @@ window.addEventListener('scroll', (_event)=>{
         menuBtnPaths.forEach((el)=>{
             el.style.stroke = 'var(--blacks)';
         });
-        searchInput.style.color = 'black';
+        searchBtnPaths.forEach((el)=>{
+            el.style.fill = 'var(--blacks)';
+        });
+        searchInput.style.color = 'var(--blacks)';
     }
 },false);
 productArr.forEach(el => {
@@ -45,6 +45,9 @@ productArr.forEach(el => {
         alert('clicks');
     });
 });
+searchBtn.addEventListener('click', event=>{
+    // if(searchInput)
+})
 
 
 

@@ -11,6 +11,16 @@
     --grays: #d3d3d3;
     --base-color: #f89281;
     --white: #ffffff;
+
+    /* .noselect { */
+        -webkit-touch-callout: none; /* iOS Safari */
+          -webkit-user-select: none; /* Safari */
+           -khtml-user-select: none; /* Konqueror HTML */
+             -moz-user-select: none; /* Firefox */
+              -ms-user-select: none; /* Internet Explorer/Edge */
+                  user-select: none; /* Non-prefixed version, currently
+                                        supported by Chrome and Opera */
+      
 }
 
 html {
@@ -122,8 +132,8 @@ nav.mobile {
     border-radius: 5px;
 }
 
-.menu-btn,
-.cart-btn {
+#menu-btn,
+#cart-btn {
     width: 1.3rem;
     height: 1.3rem;
     background-size: contain;
@@ -134,15 +144,8 @@ nav.mobile {
     cursor: pointer;
 }
 
-.menu-btn {
-    background-image: url(./img/bars.svg);
+#menu-btn {
 }
-
-.cart-btn {
-    background-image: url(./img/cart.svg);
-    opacity: .6;
-}
-
 #search-container{
     position: relative;
     width: 60%;
@@ -206,6 +209,7 @@ nav.mobile {
     padding: .5rem 1rem;
 
     border-radius: 10px;
+    border-width: 1px;
     font-family: 'Graduate', cursive;
     outline: none;
 }
