@@ -46,8 +46,19 @@ productArr.forEach(el => {
     });
 });
 searchBtn.addEventListener('click', event=>{
-    // if(searchInput)
+    if(searchInput.value.length == 0){
+        searchInput.focus();
+        searchInput.style.outline = "1px solid rgba(168, 41, 41, 0.578)";
+    }
+    else{
+        let search = searchInput.value;
+        window.open(`./Product.html?${search}`, "_self")
+    }
 })
+searchInput.oninput = event =>{
+    if(searchInput.style.outline !== '0px'&& searchInput.value.length > 0)
+        searchInput.style.outline = '0px'; 
+}
 
 
 

@@ -20,7 +20,6 @@
               -ms-user-select: none; /* Internet Explorer/Edge */
                   user-select: none; /* Non-prefixed version, currently
                                         supported by Chrome and Opera */
-      
 }
 
 html {
@@ -144,8 +143,6 @@ nav.mobile {
     cursor: pointer;
 }
 
-#menu-btn {
-}
 #search-container{
     position: relative;
     width: 60%;
