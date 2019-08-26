@@ -45,20 +45,25 @@ productArr.forEach(el => {
         alert('clicks');
     });
 });
-searchBtn.addEventListener('click', event=>{
+searchBtn.click = event=>{
     if(searchInput.value.length == 0){
         searchInput.focus();
         searchInput.style.outline = "1px solid rgba(168, 41, 41, 0.578)";
     }
     else{
         let search = searchInput.value;
-        window.open(`./Product.html?${search}`, "_self")
+        window.open(`./Search.html?s=${search}`, "_self")
     }
-})
+}
+searchBtn.addEventListener('click', searchBtn.click)
 searchInput.oninput = event =>{
     if(searchInput.style.outline !== '0px'&& searchInput.value.length > 0)
         searchInput.style.outline = '0px'; 
 }
+searchInput.addEventListener('keyup', event=>{
+    if(event.key === "Enter")
+        document.querySelector('#search-btn').click();
+})
 
 
 

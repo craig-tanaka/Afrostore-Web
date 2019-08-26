@@ -9,8 +9,9 @@
     --font-color: black;
     --blacks: rgba(17, 17, 17, 0.945);
     --grays: #d3d3d3;
-    --base-color: #f89281;
+    --base-color: #f89381cf;
     --white: #ffffff;
+    --nav-height: 3.5rem;
 
     /* .noselect { */
         -webkit-touch-callout: none; /* iOS Safari */
@@ -114,25 +115,20 @@ header {
 }
 
 nav {
-    height: 3.5rem;
+    height: var(--nav-height);
     width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1
-}
-
-nav.mobile {
-
-    padding: .3rem 1rem;
-    height: 3.5rem;
-    width: 100vw;
     z-index: 1;
-    border-radius: 5px;
+        padding: .3rem 1rem;
+        border-radius: 5px;
 }
+
 
 #menu-btn,
-#cart-btn {
+#cart-btn,
+.nav-btn{
     width: 1.3rem;
     height: 1.3rem;
     background-size: contain;
@@ -141,6 +137,10 @@ nav.mobile {
     background-color: transparent;
     background-position: center;
     cursor: pointer;
+}
+
+#back-btn{
+    /* padding: .5rem; */
 }
 
 #search-container{
@@ -177,7 +177,7 @@ nav.mobile {
 /* #region LandingSection-Styling */
 .landing-sec {
 
-    margin-top: 3.7rem;
+    margin-top: var(--nav-heights);
     background: url("./img/Header.jpg");
     height: 40vh;
     background-size: cover;
@@ -273,6 +273,40 @@ nav.mobile {
 /* #endregion MainSection-Styling */
 
 /* #endregion Index-Page*/
+
+/* #region Search-Page */
+#search-main{
+    margin-top: var(--nav-height);
+    padding: 5% 10%;
+}
+.searched-product{
+    /* border: 1px solid black; */
+    background-color: var(--base-color);
+    color: var(--white);
+    
+    border-radius: .2rem;
+    padding: 1rem .5rem;
+    margin-bottom: 1rem;
+}
+.searched-product > h6 {
+    text-align: center;
+}
+.searched-product > div{
+    margin-top: .5rem;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.addwish-btn, .add2cart-btn{
+    height: 1rem;
+}
+.searched-images{
+    /* border: 1px solid black; */
+    width: 80%;
+    margin-left: 10%;
+}
+/* #region Search-Page */
 
 /* #region Product-Page*/
 .img-cont {
