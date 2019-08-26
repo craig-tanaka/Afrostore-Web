@@ -177,19 +177,29 @@ nav {
 /* #region LandingSection-Styling */
 .landing-sec {
 
-    margin-top: var(--nav-heights);
-    background: url("./img/Header.jpg");
-    height: 40vh;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top;
-    border-radius: 5px;
-    /* opacity: .9; */
+margin-top: var(--nav-height);
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: rgb(255, 255, 255);
+background: url("./img/Header.jpg");
+
+height: 40vh;
+
+background-size: cover;
+
+background-repeat: no-repeat;
+
+background-position: top;
+
+border-radius: 5px;
+
+/* opacity: .9; */
+
+display: flex;
+
+flex-direction: column;
+
+justify-content: center;
+
+color: rgb(255, 255, 255);
 }
 
 .landing-sec>.body {
@@ -306,24 +316,21 @@ nav {
     width: 80%;
     margin-left: 10%;
 }
-/* #region Search-Page */
+/* #endregion Search-Page */
 
 /* #region Product-Page*/
 .img-cont {
-    background-image: url('./img/fashion-footwear-high-heels-40377\ __trans.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 80vh;
-    width: 100vw;
-    border-radius: 10px;
+    height: 80%;
+    width: 100%;
+    border-radius: 0px 0px 10px 10px;
 }
 
 #descript-cont {
     width: 80%;
     margin: auto;
-    position: relative;
+    /* position: relative; */
     top: -7rem;
+    z-index: 8;
 }
 
 #add2cart-btn {
@@ -347,3 +354,25 @@ nav {
 }
 
 /* #endregion Index-Page*/
+@media(min-width: 425px){
+    #add2cart-btn > p{
+        display: initial !important;
+    }
+}
+@media(min-width: 769px){
+    html{
+        background-color: rgb(185, 185, 185);
+        /* padding: 3rem 0; */
+    }
+    body,nav{
+        background-color: rgb(241, 241, 241);
+        --nav-height: 4rem;
+        width: 625px;
+        margin: auto; 
+    }
+    body{
+        overflow: scroll;
+        height: 100vh;
+        overflow-x: hidden;
+    }
+}

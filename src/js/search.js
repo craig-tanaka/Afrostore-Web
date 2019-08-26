@@ -1,10 +1,12 @@
 let resultsDom = '';
+let querySnapshot = {} ;
 
 db.collection('products').where('Tags', 'array-contains', `puma`)
     .get()
-    .then(querySnapshot => {
+    .then((__querySnapshot) => {
+        querySnapshot = __querySnapshot;
 
-        querySnapshot.forEach( doc => {
+        __querySnapshot.forEach( doc => {
             let data = doc.data();
             let productDom = 
                 `<article class="searched-product">
@@ -36,6 +38,13 @@ db.collection('products').where('Tags', 'array-contains', `puma`)
         })
 
         document.querySelector('#search-main').innerHTML = resultsDom;
+        let productContainers = document.querySelectorAll('.searched-product');
+
+        productContainers.forEach( ( el , index ) => {
+            el.addEventListener('click', event => {
+                window.open(`./Product.html?p=${querySnapshot.docs[index].id}`, '_self')
+            })
+        })
     })
     .catch(error=>{
         console.log("Error getting documents: ",error)

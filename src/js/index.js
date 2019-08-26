@@ -11,6 +11,7 @@ const searchInput = document.querySelector('#search-input');
 
 
 let newProductsSnapShot = {}
+let currentProductSnapShot = []
 
 window.addEventListener('scroll', (_event)=>{
     if ((document.body.scrollTop || document.documentElement.scrollTop) >= 12){
@@ -40,11 +41,13 @@ window.addEventListener('scroll', (_event)=>{
         searchInput.style.color = 'var(--blacks)';
     }
 },false);
-productArr.forEach(el => {
-    el.addEventListener('click', (__event)=>{
-        alert('clicks');
-    });
-});
+// productArr.forEach(el => {
+//     el.addEventListener('click', (__event)=>{
+//         alert('clicks');
+
+//         window.open(`./Search.html?s=${search}`, "_self")
+//     });
+// });
 searchBtn.click = event=>{
     if(searchInput.value.length == 0){
         searchInput.focus();
@@ -78,7 +81,6 @@ function getRecommended() {
 function getNew() {
     db.collection("new").orderBy("UploadTimestamp", "desc").limit(6).get()
         .then(querySnapshot=>{
-            alert('Logging products ...')
             newProductsSnapShot = querySnapshot;
 
             updateProducts(newProductsSnapShot)
@@ -89,10 +91,14 @@ function getNew() {
         })
 }
 function updateProducts(productsSnapShot) {
+    currentProductSnapShot = productsSnapShot;
     for(var i = 0; i < productArr.length; i++){
         productArr[i].children[1].innerHTML = productsSnapShot.docs[i].data().ProductName;
         productArr[i].children[0].src = `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${productsSnapShot.docs[i].id}%2F00.jpeg?alt=media&token=58cdcea2-8f77-4ebf-bcf5-076320e01660`
-        // alert()
+        productArr[i].index = i;
+        productArr[i].addEventListener('click', event=>{
+            window.open(`./Product.html?p=${currentProductSnapShot.docs[i].id}`, "_self");
+        });
     }
 }
 
