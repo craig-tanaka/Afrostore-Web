@@ -4,9 +4,9 @@ let pid = url.searchParams.get('p');
 
 db.collection('products').doc(pid)
     .get()
-    .then(querySnapshot=>{
+    .then(querySnapshot => {
 
-        let productHtml = 
+        let productHtml =
             ` <img src="./img/trans.png" alt="" class="img-cont" id="product-img">
             <div class="background-white box-shadow border-radius padding-one" id="descript-cont">
                 <h2 class="product-name">${querySnapshot.data().ProductName}</h2>
@@ -43,5 +43,21 @@ db.collection('products').doc(pid)
         document.querySelector('main').innerHTML = productHtml;
         document.querySelector('#product-img').src = `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${querySnapshot.id}%2F00.jpeg?alt=media&token=58cdcea2-8f77-4ebf-bcf5-076320e01660`;
 
+        document.querySelector('#add2cart-btn').addEventListener('click', event =>{
+            let cartProducts = JSON.parse(sessionStorage.getItem('cartItems'));
+            if(!cartProducts.includes(pid)){
+                cartProducts[cartProducts.length] = pid;
+                sessionStorage.setItem('cartItems', JSON.stringify(cartProducts));
+                console.log(JSON.parse(sessionStorage.getItem('cartItems')));
+            }
+        })
 
-    })
+    });
+
+document.querySelector('#cart-btn').addEventListener('click', event => {
+    window.open(`./cart.html?`, "_self");
+})
+document.querySelectorAll('.nav-btn')[0].addEventListener('click', event => {
+    // window.open(`./cart.html?c=cartId`, "_self");
+    window.history.back();
+})

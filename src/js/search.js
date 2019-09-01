@@ -48,4 +48,4 @@ db.collection('products').where('Tags', 'array-contains', `puma`)
     })
     .catch(error=>{
         console.log("Error getting documents: ",error)
-    })
+    });

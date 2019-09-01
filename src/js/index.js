@@ -12,6 +12,7 @@ const searchInput = document.querySelector('#search-input');
 
 let newProductsSnapShot = {}
 let currentProductSnapShot = []
+let cartProducts = [];
 
 window.addEventListener('scroll', (_event)=>{
     if ((document.body.scrollTop || document.documentElement.scrollTop) >= 12){
@@ -41,13 +42,6 @@ window.addEventListener('scroll', (_event)=>{
         searchInput.style.color = 'var(--blacks)';
     }
 },false);
-// productArr.forEach(el => {
-//     el.addEventListener('click', (__event)=>{
-//         alert('clicks');
-
-//         window.open(`./Search.html?s=${search}`, "_self")
-//     });
-// });
 searchBtn.click = event=>{
     if(searchInput.value.length == 0){
         searchInput.focus();
@@ -67,6 +61,12 @@ searchInput.addEventListener('keyup', event=>{
     if(event.key === "Enter")
         document.querySelector('#search-btn').click();
 })
+document.querySelector('#cart-btn').addEventListener('click', event => {
+    window.open(`./cart.html?`, "_self");
+})
+
+if (sessionStorage.length === 0)
+    sessionStorage.setItem('cartItems', JSON.stringify(cartProducts));
 
 
 
@@ -97,7 +97,7 @@ function updateProducts(productsSnapShot) {
         productArr[i].children[0].src = `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${productsSnapShot.docs[i].id}%2F00.jpeg?alt=media&token=58cdcea2-8f77-4ebf-bcf5-076320e01660`
         productArr[i].index = i;
         productArr[i].addEventListener('click', event=>{
-            window.open(`./Product.html?p=${currentProductSnapShot.docs[i].id}`, "_self");
+            window.open(`./Product.html?p=${currentProductSnapShot.docs[event.currentTarget.index].id}`, "_self");
         });
     }
 }
