@@ -94,8 +94,7 @@ function updateProducts(productsSnapShot) {
     currentProductSnapShot = productsSnapShot;
     for(var i = 0; i < productArr.length; i++){
         productArr[i].children[1].innerHTML = productsSnapShot.docs[i].data().ProductName;
-        productArr[i].children[0].src = `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${productsSnapShot.docs[i].id}%2F00.jpeg?alt=media&token=58cdcea2-8f77-4ebf-bcf5-076320e01660`
-        productArr[i].index = i;
+        productArr[i].children[0].src = `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${productsSnapShot.docs[i].id}%2F00.jpeg?alt=media`
         productArr[i].addEventListener('click', event=>{
             window.open(`./Product.html?p=${currentProductSnapShot.docs[event.currentTarget.index].id}`, "_self");
         });
