@@ -94,7 +94,8 @@ function updateProducts(productsSnapShot) {
     currentProductSnapShot = productsSnapShot;
     for(var i = 0; i < productArr.length; i++){
         productArr[i].children[1].innerHTML = productsSnapShot.docs[i].data().ProductName;
-        productArr[i].children[0].src = `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${productsSnapShot.docs[i].id}%2F00.jpeg?alt=media`
+        productArr[i].children[0].src = `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${productsSnapShot.docs[i].id}%2F00.jpg?alt=media`
+        // productArr[i].children[0].src = `https://firebasestorage.googleapis.com/v0/b/afrostore-141ed.appspot.com/o/product-images%2FIa7JpiiYQ8NihWd01BY5%2F00.jpg?alt=media`
         productArr[i].addEventListener('click', event=>{
             window.open(`./Product.html?p=${currentProductSnapShot.docs[event.currentTarget.index].id}`, "_self");
         });
