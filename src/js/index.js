@@ -14,34 +14,6 @@ let newProductsSnapShot = {}
 let currentProductSnapShot = []
 let cartProducts = [];
 
-window.addEventListener('scroll', (_event)=>{
-    if ((document.body.scrollTop || document.documentElement.scrollTop) >= 12){
-        nav.style.backgroundColor = "RGB(17, 17, 17)";
-        cartBtnPaths.forEach((el) => {
-            el.style.fill = "white";
-        });
-        menuBtnPaths.forEach((el)=>{
-            el.style.stroke = 'white';
-        });
-        searchBtnPaths.forEach((el)=>{
-            el.style.fill = 'white';
-        });
-        searchInput.style.color = 'white';
-    }
-    else{
-        nav.style.backgroundColor = "white";
-        cartBtnPaths.forEach((el) => {
-            el.style.fill = "var(--blacks)";
-        });
-        menuBtnPaths.forEach((el)=>{
-            el.style.stroke = 'var(--blacks)';
-        });
-        searchBtnPaths.forEach((el)=>{
-            el.style.fill = 'var(--blacks)';
-        });
-        searchInput.style.color = 'var(--blacks)';
-    }
-},false);
 searchBtn.click = event=>{
     if(searchInput.value.length == 0){
         searchInput.focus();

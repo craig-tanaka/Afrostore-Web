@@ -122,8 +122,11 @@ nav {
     justify-content: space-between;
     align-items: center;
     z-index: 1;
-        padding: .3rem 1rem;
-        border-radius: 5px;
+    padding: .3rem 1rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: white;
+    box-shadow: 1px 0 2px 0px black;
 }
 
 
