@@ -1,11 +1,7 @@
 /*jshint esversion: 6 */
 
 const nav = document.querySelector('nav');
-const cartBtnPaths = document.querySelectorAll('#cart-btn path');
-const menuBtnPaths = document.querySelectorAll('#menu-btn line');
-const searchBtnPaths = document.querySelectorAll('#search-btn path');
 const productArr = document.querySelectorAll('.product');
-const mainSec = document.querySelector('.main-sec');
 const searchBtn = document.querySelector('#search-btn');
 const searchInput = document.querySelector('#search-input');
 
@@ -13,6 +9,10 @@ const searchInput = document.querySelector('#search-input');
 let newProductsSnapShot = {}
 let currentProductSnapShot = []
 let cartProducts = [];
+
+
+if (sessionStorage.length === 0)
+    sessionStorage.setItem('cartItems', JSON.stringify(cartProducts));
 
 searchBtn.click = event=>{
     if(searchInput.value.length == 0){
@@ -40,9 +40,6 @@ searchInput.addEventListener('keyup', event=>{
 document.querySelector('#cart-btn').addEventListener('click', event => {
     window.open(`./cart.html?`, "_self");
 })
-
-if (sessionStorage.length === 0)
-    sessionStorage.setItem('cartItems', JSON.stringify(cartProducts));
 
 
 
