@@ -24,6 +24,10 @@ searchBtn.click = event=>{
         window.open(`./Search.html?s=${search}`, "_self")
     }
 }
+document.querySelector('#signin-btn').addEventListener('click', event => {
+    window.sessionStorage.setItem('prevSignUrl', window.location.href);
+    window.open('./signin.html', '_self');
+})
 searchBtn.addEventListener('click', searchBtn.click)
 searchInput.oninput = event =>{
     if(searchInput.style.outline !== '0px'&& searchInput.value.length > 0)

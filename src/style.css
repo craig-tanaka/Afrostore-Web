@@ -104,6 +104,29 @@ ul {
 
 /* #endregion Utilities */
 
+/* #region Sideba */
+#sidebar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50vw;
+    height: 100vh;
+    background-color: var(--blacks);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#signin-btn{
+    padding: .3rem;
+    /* border-width: 1px; */
+    border-radius: 7px;
+    background-color: var(--grays);
+    outline: transparent;
+}
+/* #endregion Sideba */
+
 /* #region Index-Page*/
 /* #region Header-Styling */
 
