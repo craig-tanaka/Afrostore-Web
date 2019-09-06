@@ -9,11 +9,21 @@ const searchInput = document.querySelector('#search-input');
 let newProductsSnapShot = {}
 let currentProductSnapShot = []
 let cartProducts = [];
+let isSidebarCollapsed = true;
 
 
 if (sessionStorage.length === 0)
     sessionStorage.setItem('cartItems', JSON.stringify(cartProducts));
 
+// sidebar
+document.querySelector('#menu-btn').addEventListener('click', toggleSidebar);
+document.querySelector('#sidebar-overlay').addEventListener('click', toggleSidebar);
+document.querySelector('#signin-btn').addEventListener('click', event => {
+    window.sessionStorage.setItem('prevSignUrl', window.location.href);
+    window.open('./signin.html', '_self');
+});
+
+// Search
 searchBtn.click = event=>{
     if(searchInput.value.length == 0){
         searchInput.focus();
@@ -24,10 +34,6 @@ searchBtn.click = event=>{
         window.open(`./Search.html?s=${search}`, "_self")
     }
 }
-document.querySelector('#signin-btn').addEventListener('click', event => {
-    window.sessionStorage.setItem('prevSignUrl', window.location.href);
-    window.open('./signin.html', '_self');
-})
 searchBtn.addEventListener('click', searchBtn.click)
 searchInput.oninput = event =>{
     if(searchInput.style.outline !== '0px'&& searchInput.value.length > 0)
@@ -37,6 +43,8 @@ searchInput.addEventListener('keyup', event=>{
     if(event.key === "Enter")
         document.querySelector('#search-btn').click();
 })
+
+// Cart
 document.querySelector('#cart-btn').addEventListener('click', event => {
     window.open(`./cart.html?`, "_self");
 })
@@ -74,6 +82,18 @@ function updateProducts(productsSnapShot) {
             window.open(`./Product.html?p=${currentProductSnapShot.docs[event.currentTarget.index].id}`, "_self");
         });
     }
+}
+function toggleSidebar(){
+    if(isSidebarCollapsed){
+        document.querySelector('#sidebar-overlay').style.width  = '100%';
+        document.querySelector('#sidebar').style.width  = '50%';
+    }
+    else{
+        document.querySelector('#sidebar-overlay').style.width  = '0';
+        document.querySelector('#sidebar').style.width  = '0';
+    }
+
+    isSidebarCollapsed = !(isSidebarCollapsed);
 }
 
 

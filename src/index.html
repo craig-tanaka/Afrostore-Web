@@ -7,6 +7,7 @@
     <title>AfroStore</title>
 
     <script defer src="/__/firebase/6.3.1/firebase-app.js"></script>
+    <script defer src="/__/firebase/6.3.1/firebase-auth.js"></script>
     <script defer src="/__/firebase/6.3.1/firebase-firestore.js"></script>
     <script defer src="/__/firebase/6.3.1/firebase-storage.js"></script>
     <script defer src="/__/firebase/init.js"></script>
@@ -91,8 +92,13 @@
         </section>
     </main>
 
-    <aside id="sidebar">
-        <button id="signin-btn">Sign In / Register</button>
+
+    <aside id="sidebar-container">
+        <div id="sidebar-overlay"></div>
+        <div id="sidebar">
+            <button id="signin-btn">Sign In / Register</button>
+            <button id="signout-btn">Sign Out</button>
+        </div>
     </aside>
 </body>
 

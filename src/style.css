@@ -105,11 +105,21 @@ ul {
 /* #endregion Utilities */
 
 /* #region Sideba */
-#sidebar{
-    position: absolute;
+#sidebar-overlay{
+    position: fixed;
+    z-index: 2;
     top: 0;
     left: 0;
-    width: 50vw;
+    width: 0; /* changed dynamically when navbar toggles */
+    background-color: rgba(170, 204, 243, 0.185);
+    height: 100%;
+    /* transition: width 750ms; */
+}
+#sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
     height: 100vh;
     background-color: var(--blacks);
     z-index: 2;
@@ -117,6 +127,14 @@ ul {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    
+     transition: width 750ms;
+}
+#sidebar.collapsed{
+    width: 50vw;
+    transition: width 750ms;
 }
 #signin-btn{
     padding: .3rem;
