@@ -41,7 +41,7 @@ db.collection('products').doc(pid)
             </div>`
 
         document.querySelector('main').innerHTML = productHtml;
-        document.querySelector('#product-img').src = `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${querySnapshot.id}%2F00.jpeg?alt=media&token=58cdcea2-8f77-4ebf-bcf5-076320e01660`;
+        document.querySelector('#product-img').src = `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${querySnapshot.id}%2F00.jpg?alt=media`;
 
         document.querySelector('#add2cart-btn').addEventListener('click', event =>{
             let cartProducts = JSON.parse(sessionStorage.getItem('cartItems'));
