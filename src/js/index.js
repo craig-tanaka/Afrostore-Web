@@ -24,23 +24,22 @@ document.querySelector('#signin-btn').addEventListener('click', event => {
 });
 
 // Search
-searchBtn.click = event=>{
-    if(searchInput.value.length == 0){
+searchBtn.click = event => {
+    if (searchInput.value.length == 0) {
         searchInput.focus();
         searchInput.style.outline = "1px solid rgba(168, 41, 41, 0.578)";
-    }
-    else{
+    } else {
         let search = searchInput.value;
         window.open(`./Search.html?s=${search}`, "_self")
     }
 }
 searchBtn.addEventListener('click', searchBtn.click)
-searchInput.oninput = event =>{
-    if(searchInput.style.outline !== '0px'&& searchInput.value.length > 0)
-        searchInput.style.outline = '0px'; 
+searchInput.oninput = event => {
+    if (searchInput.style.outline !== '0px' && searchInput.value.length > 0)
+        searchInput.style.outline = '0px';
 }
-searchInput.addEventListener('keyup', event=>{
-    if(event.key === "Enter")
+searchInput.addEventListener('keyup', event => {
+    if (event.key === "Enter")
         document.querySelector('#search-btn').click();
 })
 
@@ -53,15 +52,16 @@ document.querySelector('#cart-btn').addEventListener('click', event => {
 
 function getRecommended() {
     db.collection("products").get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            alert(`${doc.id} => ${doc.data().ProductName}`);
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                alert(`${doc.id} => ${doc.data().ProductName}`);
+            });
         });
-    });  
 }
+
 function getNew() {
     db.collection("new").orderBy("UploadTimestamp", "desc").limit(6).get()
-        .then(querySnapshot=>{
+        .then(querySnapshot => {
             newProductsSnapShot = querySnapshot;
 
             updateProducts(newProductsSnapShot)
@@ -71,26 +71,33 @@ function getNew() {
             // });
         })
 }
+
 function updateProducts(productsSnapShot) {
     currentProductSnapShot = productsSnapShot;
-    for(var i = 0; i < productArr.length; i++){
+    for (var i = 0; i < productArr.length; i++) {
         productArr[i].index = i;
         productArr[i].children[1].innerHTML = productsSnapShot.docs[i].data().ProductName;
         productArr[i].children[0].src = `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${productsSnapShot.docs[i].id}%2F00.jpg?alt=media`
         // productArr[i].children[0].src = `https://firebasestorage.googleapis.com/v0/b/afrostore-141ed.appspot.com/o/product-images%2FIa7JpiiYQ8NihWd01BY5%2F00.jpg?alt=media`
-        productArr[i].addEventListener('click', event=>{
+        productArr[i].addEventListener('click', event => {
             window.open(`./Product.html?p=${currentProductSnapShot.docs[event.currentTarget.index].id}`, "_self");
         });
     }
 }
-function toggleSidebar(){
-    if(isSidebarCollapsed){
-        document.querySelector('#sidebar-overlay').style.width  = '100%';
-        document.querySelector('#sidebar').style.width  = '50%';
-    }
-    else{
-        document.querySelector('#sidebar-overlay').style.width  = '0';
-        document.querySelector('#sidebar').style.width  = '0';
+
+function toggleSidebar() {
+    if (isSidebarCollapsed) {
+        document.querySelector('#sidebar-overlay').style.width = '100%';
+        document.querySelector('#sidebar').style.width = '50%';
+        document.querySelectorAll('#sidebar button').forEach(el => {
+            el.style.display = 'initial';
+        });
+    } else {
+        document.querySelector('#sidebar-overlay').style.width = '0';
+        document.querySelector('#sidebar').style.width = '0';
+        document.querySelectorAll('#sidebar button').forEach(el => {
+            el.style.display = 'none';
+        });
     }
 
     isSidebarCollapsed = !(isSidebarCollapsed);
