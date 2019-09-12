@@ -83,6 +83,7 @@ db.collection('products').doc(pid)
                 cartProducts[cartProducts.length] = pid;
                 sessionStorage.setItem('cartItems', JSON.stringify(cartProducts));
                 console.log(JSON.parse(sessionStorage.getItem('cartItems')));
+                // TODO do something responsive to show user item added o cart
             }
 
             document.querySelector('#cart-btn').innerHTML = `

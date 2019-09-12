@@ -38,13 +38,12 @@ ui.start('#firebaseui-auth-container', {
           PhoneNumber: authResult.user.phoneNumber,
           PhotoUrl: authResult.user.photoURL
         };
-
-        // if ()
-        // let __photoUrl = '';
         db.collection('users').doc(authResult.user.uid).set(userDoc);
-
       }
-
+      
+      // TODO handle potential sessionStorage errors
+      window.sessionStorage.setItem('recentSignIn', 'true');
+      
       
       // On success redirect to signInSuccessUrl.
       return true;
@@ -60,6 +59,7 @@ ui.start('#firebaseui-auth-container', {
       }
       // The credential the user tried to sign in with.
       var cred = error.credential;
+      // TODO change below firestore
       // If using Firebase Realtime Database. The anonymous user data has to be
       // copied to the non-anonymous user.
       var app = firebase.app();
@@ -90,6 +90,7 @@ ui.start('#firebaseui-auth-container', {
           // resolves.
           // signInSuccessWithAuthResult will not run. Successful sign-in
           // logic has to be run explicitly.
+          window.sessionStorage.setItem('recentSignIn', 'true');
           window.location.assign(prevUrl);
         });
     },
