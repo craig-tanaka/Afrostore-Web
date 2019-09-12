@@ -16,6 +16,10 @@ let cartTotal = 0;
 
 // TODO check first if cartIDs is empty
 if (firebase.auth().currentUser === null) {
+    if(cartIDs.length === 0){
+        document.querySelector('.cart-items').innerHTML ='no items in cart';
+    }
+
     cartIDs.forEach((el, index) => {
         db.collection('products').doc(el)
             .get()
@@ -37,12 +41,18 @@ if (firebase.auth().currentUser === null) {
                     if (confirm(message)) {
                         // TODO get ids from user cart and then combine them
                     }
+                    // TODO ensure recentSignin is set to false after use
                 }
             }
+            if(products.length > 0){
+                document.querySelector('.cart-items').innerHTML = 'no items in cart';
+            }
+            else{
+                products.forEach((el, index) => {
+                    renderCartItem(el, index)
+                });
+            }
 
-            products.forEach((el, index) => {
-                renderCartItem(el, index)
-            });
 
         })
 }
@@ -114,7 +124,7 @@ function removeFromCart(event) {
 
     console.log(`Deleted item ${cartIDs[cartItem.getAttribute('index')]}, Remaining :`)
     cartIDs.forEach(el => {
-        console.log(el)
+        console.log(el);
     })
 }
 
