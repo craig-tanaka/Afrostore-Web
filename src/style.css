@@ -232,18 +232,30 @@ nav {
 
 /* #region LandingSection-Styling */
 .landing-sec {
-/* margin-top: var(--nav-height); */
-background: url("./img/Header.jpg");
-height: 40vh;
-background-size: cover;
-background-repeat: no-repeat;
-background-position: top;
-border-radius: 5px;
-/* opacity: .9; */
-display: flex;
-flex-direction: column;
-justify-content: center;
-color: rgb(255, 255, 255);
+
+/* margin-top: var(--nav-height); */
+
+background: url("./img/Header.jpg");
+
+height: 40vh;
+
+background-size: cover;
+
+background-repeat: no-repeat;
+
+background-position: top;
+
+border-radius: 5px;
+
+/* opacity: .9; */
+
+display: flex;
+
+flex-direction: column;
+
+justify-content: center;
+
+color: rgb(255, 255, 255);
 }
 
 .landing-sec>.body {
@@ -335,8 +347,8 @@ nav {
 }
 .searched-product{
     /* border: 1px solid black; */
-    background-color: var(--base-color);
-    color: var(--white);
+    /* background-color: var(--base-color);
+    color: var(--white); */
     
     border-radius: .2rem;
     padding: 1rem .5rem;
