@@ -10,7 +10,7 @@ db.collection('products').where('Tags', 'array-contains',url.searchParams.get('s
             let data = doc.data();
             let productDom =
                 `<article class="searched-product">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${doc.id}%2F00.jpeg?alt=media&token=58cdcea2-8f77-4ebf-bcf5-076320e01660" alt="" class="searched-images">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${doc.id}%2F00.jpg?alt=media" alt="" class="searched-images">
                     <h6>${data.ProductName}</h6>
                     <div>
                         <svg class="addwish-btn" viewBox="0 0 24 24" fill="var(--white)" fill-rule="evenodd" clip-rule="evenodd">
