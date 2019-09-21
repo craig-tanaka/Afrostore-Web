@@ -1,7 +1,7 @@
 let url = new URL(window.location.href);
 let pid = url.searchParams.get('p');
 
-if (JSON.parse(sessionStorage.getItem('cartItems')).length >= 1){
+function changeCartIcon(){
     document.querySelector('#cart-btn').innerHTML = `
     <path id="svg_7"
         d="m162.69232,224.75c0,-42.49043 34.41725,-76.90768 76.90768,-76.90768c42.49044,0 76.90769,34.41725 76.90769,76.90768c0,42.49044 -34.41725,76.90769 -76.90769,76.90769c-42.49043,0 -76.90768,-34.41725 -76.90768,-76.90769z"
@@ -76,14 +76,22 @@ db.collection('products').doc(pid)
 
         document.querySelector('main').innerHTML = productHtml;
         document.querySelector('#product-img').src = `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${querySnapshot.id}%2F00.jpg?alt=media`;
-
+        
+        if(JSON.parse(sessionStorage.getItem('cartItems')).length > 0) changeCartIcon();
         document.querySelector('#add2cart-btn').addEventListener('click', event =>{
-            let cartProducts = JSON.parse(sessionStorage.getItem('cartItems'));
-            if(!cartProducts.includes(pid)){
-                cartProducts[cartProducts.length] = pid;
-                sessionStorage.setItem('cartItems', JSON.stringify(cartProducts));
-                console.log(JSON.parse(sessionStorage.getItem('cartItems')));
-                // TODO do something responsive to show user item added o cart
+            if(firebase.auth().currentUser === null){
+                if( JSON.parse(sessionStorage.getItem('cartItems')) === null){
+                    sessionStorage.setItem('cartItems', JSON.stringify([]));
+                }
+                let cartProducts = JSON.parse(sessionStorage.getItem('cartItems'));
+                if(!cartProducts.includes(pid)){
+                    cartProducts[cartProducts.length] = pid;
+                    sessionStorage.setItem('cartItems', JSON.stringify(cartProducts));
+                    console.log(JSON.parse(sessionStorage.getItem('cartItems')));
+                    // TODO do something responsive to show user item added o cart
+                }
+
+                changeCartIcon();
             }
 
             document.querySelector('#cart-btn').innerHTML = `
