@@ -1,14 +1,14 @@
 let resultsDom = '';
-let querySnapshot = {} ;
+let querySnapshot = {};
 
-db.collection('products').where('Tags', 'array-contains', `puma`)
+db.collection('products').where('Tags', 'array-contains',url.searchParams.get('s'))
     .get()
     .then((__querySnapshot) => {
         querySnapshot = __querySnapshot;
 
-        __querySnapshot.forEach( doc => {
+        __querySnapshot.forEach(doc => {
             let data = doc.data();
-            let productDom = 
+            let productDom =
                 `<article class="searched-product">
                     <img src="https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${doc.id}%2F00.jpeg?alt=media&token=58cdcea2-8f77-4ebf-bcf5-076320e01660" alt="" class="searched-images">
                     <h6>${data.ProductName}</h6>
@@ -34,18 +34,18 @@ db.collection('products').where('Tags', 'array-contains', `puma`)
                     </div>
                 </article>`;
 
-                resultsDom += productDom;
+            resultsDom += productDom;
         })
 
         document.querySelector('#search-main').innerHTML = resultsDom;
         let productContainers = document.querySelectorAll('.searched-product');
 
-        productContainers.forEach( ( el , index ) => {
+        productContainers.forEach((el, index) => {
             el.addEventListener('click', event => {
                 window.open(`./Product.html?p=${querySnapshot.docs[index].id}`, '_self')
             })
         })
     })
-    .catch(error=>{
-        console.log("Error getting documents: ",error)
+    .catch(error => {
+        console.log("Error getting documents: ", error)
     });
