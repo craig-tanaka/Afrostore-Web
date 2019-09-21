@@ -11,11 +11,12 @@ document.querySelector('.nav-btn').addEventListener('click', event => {
 // TODO first check if user logged in before defaulting to sessionStorage 
 // TODO switch to localStorage for a more permant cart
 // TODO if sign in occurs while current session cart is not empty ask you user to trnsfer and maybe merge carts
-let cartIDs = JSON.parse(sessionStorage.getItem('cartItems'));
+let cartIDs = [];
 let cartTotal = 0;
 
 // TODO check first if cartIDs is empty
 if (firebase.auth().currentUser === null) {
+    
     if(cartIDs.length === 0){
         document.querySelector('.cart-items').innerHTML ='no items in cart';
     }
