@@ -1,6 +1,11 @@
 let resultsDom = '';
 let querySnapshot = {};
 
+document.querySelector('#back-btn')
+    .addEventListener('click', event => {
+        window.open(`./index.html`, '_self')
+    })
+
 db.collection('products').where('Tags', 'array-contains',url.searchParams.get('s'))
     .get()
     .then((__querySnapshot) => {
