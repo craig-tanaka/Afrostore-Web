@@ -6,7 +6,7 @@ document.querySelector('#back-btn')
         window.open(`./index.html`, '_self')
     })
 
-db.collection('products').where('Tags', 'array-contains',url.searchParams.get('s'))
+db.collection('products').where('Tags', 'array-contains', url.searchParams.get('s'))
     .get()
     .then((__querySnapshot) => {
         querySnapshot = __querySnapshot;
@@ -62,18 +62,21 @@ db.collection('products').where('Tags', 'array-contains',url.searchParams.get('s
         console.log("Error getting documents: ", error)
     });
 
-    function addToCart(e) {
-        if(firebase.auth().currentUser === null){
-            if(sessionStorage.getItem('cartItems') === null){
-                sessionStorage.setItem('cartItems', JSON.stringify([]));
-            }
-            let cartProducts = JSON.parse(sessionStorage.getItem('cartItems'));
-            let pid = e.currentTarget.getAttribute('pid');
-            if(!cartProducts.includes(pid)){
-                cartProducts[cartProducts.length] = pid;
-                sessionStorage.setItem('cartItems', JSON.stringify(cartProducts));
-                console.log(JSON.parse(sessionStorage.getItem('cartItems')));
-                // TODO do something responsive to show user item added o cart
-            }
+function addToCart(e) {
+    let pid = e.currentTarget.getAttribute('pid');
+    if (user === null) {
+        if (!cartIDs.includes(pid)) {
+            cartIDs[cartIDs.length] = pid;
+            sessionStorage.setItem('cartItems', JSON.stringify(cartIDs));
+            console.log(JSON.parse(sessionStorage.getItem('cartItems')));
+            // TODO do something responsive to show user item added o cart
         }
+    } else {
+        console.log('updating user cart on database')
+        db.collection('carts').doc(user.uid).update({
+            Products: firebase.firestore.FieldValue.arrayUnion(pid)
+        }).then(result => {
+            console.log('database updated')
+        })
     }
+}
