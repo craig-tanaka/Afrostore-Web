@@ -44,15 +44,7 @@ if (firebase.auth().currentUser === null) {
             const doc = querySnapshot.data();
             const products = doc.Products;
 
-            if(window.sessionStorage.getItem('recentSignIn') === 'true'){
-                if (cartIDs.length > 0) {
-                    const message = 'There were some items in your cart before signing in.\nDo you wanna add them to your user cart?';
-                    if (confirm(message)) {
-                        // TODO get ids from user cart and then combine them
-                    }
-                    // TODO ensure recentSignin is set to false after use
-                }
-            }
+
             if(products.length > 0){
                 document.querySelector('.cart-items').innerHTML = 'no items in cart';
             }
