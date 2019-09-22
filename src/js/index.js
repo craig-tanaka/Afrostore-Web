@@ -46,22 +46,25 @@ function changeCartIcon(){
         id="svg_2" />`
 }
 
-if(firebase.auth().currentUser === null) {
-    if(confirm('You are not logged in,\nDo you wanna sign in?')){
-        window.open(`./signin.html`,'_self');
-    }
-    if(sessionStorage.getItem('cartItems') === null){
-        sessionStorage.setItem('cartItems', JSON.stringify([]));
-    }
-    cartIDs = JSON.parse(sessionStorage.getItem('cartItems'));
-    if(cartIDs.length > 0) changeCartIcon();
-}else{
-    db.collection('carts').doc(firebase. auth().currentUser.uid).get()
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        db.collection('carts').doc(firebase. auth().currentUser.uid).get()
         .then(querySnapshot => {
             cartIDs = querySnapshot.data().Products;
             if(cartIDs.length > 0) changeCartIcon();
         })
-}
+    } else {
+        if(confirm('You are not logged in,\nDo you wanna sign in?')){
+            window.open(`./signin.html`,'_self');
+        }
+        if(sessionStorage.getItem('cartItems') === null){
+            sessionStorage.setItem('cartItems', JSON.stringify([]));
+        }
+        cartIDs = JSON.parse(sessionStorage.getItem('cartItems'));
+        if(cartIDs.length > 0) changeCartIcon();
+    }
+  }) 
+
 // sidebar
 document.querySelector('#menu-btn').addEventListener('click', toggleSidebar);
 document.querySelector('#sidebar-overlay').addEventListener('click', toggleSidebar);
