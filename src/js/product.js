@@ -42,7 +42,7 @@ db.collection('products').doc(pid)
 
         let productHtml =
             ` <img src="./img/trans.png" alt="" class="img-cont" id="product-img">
-            <div class="background-white box-shadow border-radius padding-one" id="descript-cont">
+            <div class="border-radius padding-one" id="descript-cont">
                 <h2 class="product-name">${querySnapshot.data().ProductName}</h2>
                 <p class="margin-top" id="product-description">
                     ${querySnapshot.data().Description}

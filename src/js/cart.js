@@ -1,10 +1,11 @@
 document.querySelector('.nav-btn').addEventListener('click', event => {
     // window.open(`./cart.html?c=cartId`, "_self");
-
-    if(firebase.auth().currentUser === null){
-        sessionStorage.setItem('cartItems', JSON.stringify(cartIDs));
-    }else{
-        // db.collection('carts').doc(firebase.auth().currentUser.uid).set()
+    if(confirm('Save changes made to your cart')){
+        if(firebase.auth().currentUser === null){
+            sessionStorage.setItem('cartItems', JSON.stringify(cartIDs));
+        }else{
+            // db.collection('carts').doc(firebase.auth().currentUser.uid).set()
+        }
     }
     // TODO check if previous page is from this sitte if not go to homepage instead
     window.history.back();
