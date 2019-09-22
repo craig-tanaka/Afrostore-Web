@@ -1,7 +1,11 @@
 document.querySelector('.nav-btn').addEventListener('click', event => {
     // window.open(`./cart.html?c=cartId`, "_self");
 
-    // if()
+    if(firebase.auth().currentUser === null){
+        sessionStorage.setItem('cartItems', JSON.stringify(cartIDs));
+    }else{
+        // db.collection('carts').doc(firebase.auth().currentUser.uid).set()
+    }
     // TODO check if previous page is from this sitte if not go to homepage instead
     window.history.back();
 
@@ -16,7 +20,10 @@ let cartTotal = 0;
 
 // TODO check first if cartIDs is empty
 if (firebase.auth().currentUser === null) {
-    
+    if(sessionStorage.getItem('cartItems') === null){
+        sessionStorage.setItem('cartItems', JSON.stringify([]));
+    }
+    cartIDs = JSON.parse(sessionStorage.getItem('cartItems'));
     if(cartIDs.length === 0){
         document.querySelector('.cart-items').innerHTML ='no items in cart';
     }
@@ -25,7 +32,7 @@ if (firebase.auth().currentUser === null) {
         db.collection('products').doc(el)
             .get()
             .then(querySnapshot => {
-
+                renderCartItem(querySnapshot.data(), index);
             })
     });
 } else {
@@ -87,7 +94,7 @@ document.querySelector('#cart-submit-btn').addEventListener('click', event => {
 function renderCartItem(product, index) {
     let cartItemHtml =
         `<div class="cart-item" index=" ${index} ">
-            <img src="https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${el}%2F00.jpg?alt=media" alt="${product.ProductName}" class="cart-product-img">
+            <img src="https://firebasestorage.googleapis.com/v0/b/${bucket}/o/product-images%2F${cartIDs[index]}%2F00.jpg?alt=media" alt="${product.ProductName}" class="cart-product-img">
             <h4 class="cart-product-name">
                 ${product.ProductName}
             </h4>
