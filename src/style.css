@@ -127,12 +127,11 @@ ul {
     z-index: 2;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
-    
-     transition: width 750ms;
+    transition: width 750ms;
 }
 #sidebar.collapsed{
     width: 50vw;
