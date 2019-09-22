@@ -6,6 +6,7 @@ let cartIDs = [];
 let user = null;
 
 function changeCartIcon() {
+    if(document.querySelector('#cart-btn') === null) return;
     document.querySelector('#cart-btn').innerHTML = `
     <path id="svg_7"
         d="m162.69232,224.75c0,-42.49043 34.41725,-76.90768 76.90768,-76.90768c42.49044,0 76.90769,34.41725 76.90769,76.90768c0,42.49044 -34.41725,76.90769 -76.90769,76.90769c-42.49043,0 -76.90768,-34.41725 -76.90768,-76.90769z"
