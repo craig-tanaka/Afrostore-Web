@@ -3,6 +3,7 @@ const storage = firebase.storage();
 const bucket = storage.bucket_.bucket;
 
 let cartIDs = [];
+let user = null;
 
 function changeCartIcon() {
     document.querySelector('#cart-btn').innerHTML = `
@@ -38,9 +39,10 @@ function changeCartIcon() {
         id="svg_2" />`
 }
 
-firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-        db.collection('carts').doc(firebase.auth().currentUser.uid).get()
+firebase.auth().onAuthStateChanged(_user => {
+    if (_user) {
+        user = _user;
+        db.collection('carts').doc(user.uid).get()
             .then(querySnapshot => {
                 cartIDs = querySnapshot.data().Products;
                 if (cartIDs.length > 0) changeCartIcon();
