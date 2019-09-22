@@ -1,9 +1,10 @@
 const db = firebase.firestore();
 const storage = firebase.storage();
 const bucket = storage.bucket_.bucket;
+
 let cartIDs = [];
 
-function changeCartIcon(){
+function changeCartIcon() {
     document.querySelector('#cart-btn').innerHTML = `
     <path id="svg_7"
         d="m162.69232,224.75c0,-42.49043 34.41725,-76.90768 76.90768,-76.90768c42.49044,0 76.90769,34.41725 76.90769,76.90768c0,42.49044 -34.41725,76.90769 -76.90769,76.90769c-42.49043,0 -76.90768,-34.41725 -76.90768,-76.90769z"
@@ -39,19 +40,19 @@ function changeCartIcon(){
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        db.collection('carts').doc(firebase. auth().currentUser.uid).get()
-        .then(querySnapshot => {
-            cartIDs = querySnapshot.data().Products;
-            if(cartIDs.length > 0) changeCartIcon();
-        })
+        db.collection('carts').doc(firebase.auth().currentUser.uid).get()
+            .then(querySnapshot => {
+                cartIDs = querySnapshot.data().Products;
+                if (cartIDs.length > 0) changeCartIcon();
+            })
     } else {
-        if(confirm('You are not logged in,\nDo you wanna sign in?')){
-            window.open(`./signin.html`,'_self');
+        if (confirm('You are not logged in,\nDo you wanna sign in?')) {
+            window.open(`./signin.html`, '_self');
         }
-        if(sessionStorage.getItem('cartItems') === null){
+        if (sessionStorage.getItem('cartItems') === null) {
             sessionStorage.setItem('cartItems', JSON.stringify([]));
         }
         cartIDs = JSON.parse(sessionStorage.getItem('cartItems'));
-        if(cartIDs.length > 0) changeCartIcon();
+        if (cartIDs.length > 0) changeCartIcon();
     }
-  }) 
+})
