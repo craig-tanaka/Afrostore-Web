@@ -1,3 +1,4 @@
+let cartTotal = 0;
 document.querySelector('.nav-btn').addEventListener('click', event => {
     // window.open(`./cart.html?c=cartId`, "_self");
     if(confirm('Save changes made to your cart')){
@@ -13,51 +14,14 @@ document.querySelector('.nav-btn').addEventListener('click', event => {
     // TODO Ask user to save any changes to cart
 })
 
-// TODO first check if user logged in before defaulting to sessionStorage 
-// TODO switch to localStorage for a more permant cart
-// TODO if sign in occurs while current session cart is not empty ask you user to trnsfer and maybe merge carts
-let cartIDs = [];
-let cartTotal = 0;
-
-// TODO check first if cartIDs is empty
-if (firebase.auth().currentUser === null) {
-    if(sessionStorage.getItem('cartItems') === null){
-        sessionStorage.setItem('cartItems', JSON.stringify([]));
-    }
-    cartIDs = JSON.parse(sessionStorage.getItem('cartItems'));
-    if(cartIDs.length === 0){
-        document.querySelector('.cart-items').innerHTML ='no items in cart';
-    }
-
-    cartIDs.forEach((el, index) => {
-        db.collection('products').doc(el)
-            .get()
+function onUserLoaded(){
+    cartIDs.forEach((el, index)=>{
+        db.collection('products').doc(el).get()
             .then(querySnapshot => {
                 renderCartItem(querySnapshot.data(), index);
             })
-    });
-} else {
-    db.collection('carts').doc(firebase.auth().currentUser.uid)
-        .get()
-        .then(querySnapshot => {
-            // TODO handle firestore errors
-            const doc = querySnapshot.data();
-            const products = doc.Products;
-
-
-            if(products.length > 0){
-                document.querySelector('.cart-items').innerHTML = 'no items in cart';
-            }
-            else{
-                products.forEach((el, index) => {
-                    renderCartItem(el, index)
-                });
-            }
-
-
-        })
+    })
 }
-
 // TODO add query event listeners
 
 document.querySelector('.cart-items').addEventListener('click', event => {

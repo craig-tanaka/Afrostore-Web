@@ -59,15 +59,16 @@ firebase.auth().onAuthStateChanged(_user => {
                 cartIDs = querySnapshot.data().Products;
                 if (cartIDs.length > 0) changeCartIcon();
 
-                if(window.sessionStorage.getItem('recentSignIn') === 'true'){
+                if(!window.sessionStorage.getItem('recentSignIn')){
                     if (JSON.parse(sessionStorage.getItem('cartItems')).length > 0) {
                         const message = 'There were some items in your cart before signing in.\nDo you wanna add them to your user cart?';
                         if (confirm(message)) {
                             copyAnonymousCartItems();
                         }
-                        sessionStorage.removeItemk('recentSigninIn');
                     }
                 }
+                sessionStorage.removeItem('recentSigninIn');
+                onUserLoaded();
             })
     } else {
         if (confirm('You are not logged in,\nDo you wanna sign in?')) {
@@ -78,5 +79,6 @@ firebase.auth().onAuthStateChanged(_user => {
         }
         cartIDs = JSON.parse(sessionStorage.getItem('cartItems'));
         if (cartIDs.length > 0) changeCartIcon();
+        onUserLoaded();
     }
 })
