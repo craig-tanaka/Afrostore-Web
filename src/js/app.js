@@ -68,7 +68,7 @@ firebase.auth().onAuthStateChanged(_user => {
                     }
                 }
                 sessionStorage.removeItem('recentSigninIn');
-                onUserLoaded();
+                if(typeof onUserLoaded === 'function') onUserLoaded();
             })
     } else {
         if (confirm('You are not logged in,\nDo you wanna sign in?')) {
@@ -79,6 +79,6 @@ firebase.auth().onAuthStateChanged(_user => {
         }
         cartIDs = JSON.parse(sessionStorage.getItem('cartItems'));
         if (cartIDs.length > 0) changeCartIcon();
-        onUserLoaded();
+        if(typeof onUserLoaded === 'function') onUserLoaded();
     }
 })
