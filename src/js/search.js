@@ -6,7 +6,7 @@ document.querySelector('#back-btn')
         window.open(`./index.html`, '_self')
     })
 
-db.collection('products').where('Tags', 'array-contains', url.searchParams.get('s'))
+db.collection('products').where('Tags', 'array-contains', url.searchParams.get('s').toLowerCase())
     .get()
     .then((__querySnapshot) => {
         querySnapshot = __querySnapshot;
