@@ -1,3 +1,6 @@
+const searchBtn = document.querySelector('#search-btn');
+const searchInput = document.querySelector('#search-input');
+
 let resultsDom = '';
 let querySnapshot = {};
 
@@ -5,6 +8,26 @@ document.querySelector('#back-btn')
     .addEventListener('click', event => {
         window.open(`./index.html`, '_self')
     })
+
+// Search
+searchBtn.click = event => {
+    if (searchInput.value.length == 0) {
+        searchInput.focus();
+        searchInput.style.outline = "1px solid rgba(168, 41, 41, 0.578)";
+    } else {
+        let search = searchInput.value;
+        window.open(`./Search.html?s=${search}`, "_self")
+    }
+}
+searchBtn.addEventListener('click', searchBtn.click)
+searchInput.oninput = event => {
+    if (searchInput.style.outline !== '0px' && searchInput.value.length > 0)
+        searchInput.style.outline = '0px';
+}
+searchInput.addEventListener('keyup', event => {
+    if (event.key === "Enter")
+        document.querySelector('#search-btn').click();
+})
 
 db.collection('products').where('Tags', 'array-contains', url.searchParams.get('s').toLowerCase())
     .get()
