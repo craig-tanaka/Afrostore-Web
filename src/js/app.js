@@ -72,7 +72,7 @@ firebase.auth().onAuthStateChanged(_user => {
             })
     } else {
         if (confirm('You are not logged in,\nDo you wanna sign in?')) {
-            window.open(`./signin.html`, '_self');
+            window.open(`SignIn.html`, '_self');
         }
         if (sessionStorage.getItem('cartItems') === null) {
             sessionStorage.setItem('cartItems', JSON.stringify([]));
