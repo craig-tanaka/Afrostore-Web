@@ -18,6 +18,8 @@ document.querySelector('.nav-btn').addEventListener('click', event => {
     // TODO Ask user to save any changes to cart
 })
 
+// TODO fix-bug cart changes save when item removed and added back to cart 
+// TODO fix Signed in And signed out flows
 function onUserLoaded(){
     cartIDs.forEach((el, index)=>{
         db.collection('products').doc(el).get()
