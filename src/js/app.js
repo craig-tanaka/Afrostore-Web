@@ -1,6 +1,49 @@
 const db = firebase.firestore();
 const storage = firebase.storage();
 const bucket = storage.bucket_.bucket;
+const loader = `
+    <div class="lds-hourglass">
+    <style>
+        .lds-hourglass {
+        overflow: hidden;
+        display: inline-block;
+        position: relative;
+        width: 64px;
+        height: 64px;
+        position: absolute;
+        top:50%;
+        left: 50%;
+        margin-left: -32px;
+        margin-top: -32px;
+    }
+    .lds-hourglass:after {
+        content: " ";
+        display: block;
+        border-radius: 50%;
+        width: 0;
+        height: 0;
+        margin: 6px;
+        box-sizing: border-box;
+        border: 26px solid #fff;
+        border-color: rgb(134, 127, 127) transparent rgb(109, 106, 106) transparent;
+        animation: lds-hourglass 1.2s infinite;
+    }
+    @keyframes lds-hourglass {
+        0% {
+        transform: rotate(0);
+        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        }
+        50% {
+        transform: rotate(900deg);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+        100% {
+        transform: rotate(1800deg);
+        }
+    }
+    </style>
+    </div>
+    </div>`
 
 let cartIDs = [];
 let user = null;

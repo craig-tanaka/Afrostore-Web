@@ -2,14 +2,18 @@ let cartTotal = 0;
 document.querySelector('.nav-btn').addEventListener('click', event => {
     // window.open(`./cart.html?c=cartId`, "_self");
     if(confirm('Save changes made to your cart')){
-        if(firebase.auth().currentUser === null){
-            sessionStorage.setItem('cartItems', JSON.stringify(cartIDs));
+        if(user){
+            db.collection('carts').doc(user.uid).set({
+                Products: cartIDs
+            }).then(result => {
+                // TODO check if previous page is from this sitte if not go to homepage instead
+                window.history.back();
+            })
+            document.querySelector('body') = loader;
         }else{
-            // db.collection('carts').doc(firebase.auth().currentUser.uid).set()
+            sessionStorage.setItem('cartItems', JSON.stringify(cartIDs));
         }
     }
-    // TODO check if previous page is from this sitte if not go to homepage instead
-    window.history.back();
 
     // TODO Ask user to save any changes to cart
 })
@@ -76,18 +80,20 @@ function renderCartItem(product, index) {
 
 function removeFromCart(event) {
     const cartItem = event.target.parentElement.parentElement.parentElement;
+    const index = Number(cartItem.getAttribute('index'));
+    const itemPrice = Number(event.target.parentElement.nextElementSibling.innerHTML.substring(1));
 
     cartItem.style.opacity = '0.6';
     event.target.previousElementSibling.disabled = false; //enables addBack2Cart btn for element
     event.target.disabled = true; //disables remove from cart btn
 
-    const itemPrice = Number(event.target.parentElement.nextElementSibling.innerHTML.substring(1));
     cartTotal = cartTotal - itemPrice;
     document.querySelector('#cart-total').innerHTML = `$${cartTotal}`;
+    document.querySelectorAll(`.cart-product-name`)[index].style.textDecoration = 'line-through';
 
-    cartIDs.splice(cartItem.getAttribute('index'), 1);
+    cartIDs.splice(index, 1);
 
-    console.log(`Deleted item ${cartIDs[cartItem.getAttribute('index')]}, Remaining :`)
+    console.log(`Deleted item ${cartIDs[index]}, Remaining :`)
     cartIDs.forEach(el => {
         console.log(el);
     })
@@ -95,18 +101,19 @@ function removeFromCart(event) {
 
 function addBack2Cart(event) {
     const cartItem = event.target.parentElement.parentElement.parentElement;
-    const itemIndex = Number(cartItem.getAttribute('index'));
+    const index = Number(cartItem.getAttribute('index'));
 
     cartItem.style.opacity = '1';
     event.target.nextElementSibling.disabled = false; //enables remove from cart btn  
     event.target.disabled = true; //disables addBack2Cart btn for element
+    document.querySelectorAll(`.cart-product-name`)[index].style.textDecoration = 'initial';
 
     const itemPrice = Number(event.target.parentElement.nextElementSibling.innerHTML.substring(1));
     cartTotal = cartTotal + itemPrice;
     document.querySelector('#cart-total').innerHTML = `$${cartTotal}`;
 
     const sessionCart = JSON.parse(sessionStorage.getItem('cartItems'));
-    cartIDs.push(sessionCart[itemIndex]);
+    cartIDs.push(sessionCart[index]);
 
     console.log(`Added item Remaining :`)
     cartIDs.forEach(el => {
