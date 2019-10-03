@@ -103,7 +103,7 @@ firebase.auth().onAuthStateChanged(_user => {
                 if (cartIDs.length > 0) changeCartIcon();
 
                 if(!window.sessionStorage.getItem('recentSignIn')){
-                    if (JSON.parse(sessionStorage.getItem('cartItems')).length > 0) {
+                    if (JSON.parse(sessionStorage.getItem('cartItems')) === null) {
                         const message = 'There were some items in your cart before signing in.\nDo you wanna add them to your user cart?';
                         if (confirm(message)) {
                             copyAnonymousCartItems();
