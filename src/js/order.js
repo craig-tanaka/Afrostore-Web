@@ -31,7 +31,9 @@ document.querySelector('#cart-submit-btn').addEventListener('click', event => {
         }
     }
 });
-
+function onFormSubmit(){
+    document.payfast_form.amount.value = cartTotal;
+}
 function renderCartItem(product, index) {
     let cartItemHtml =
         `<div class="cart-item" index=" ${index} ">
