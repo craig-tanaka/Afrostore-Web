@@ -40,7 +40,10 @@ document.querySelector('.cart-items').addEventListener('click', event => {
 });
 document.querySelector('#cart-submit-btn').addEventListener('click', event => {
     // alert('')
-    if (firebase.auth().currentUser === null) {
+    if(user){
+        window.open('./Order.html', '_self');
+    }
+    if (!user) {
         // first have user create account
 
         const message = 'You must be logged in to make an order.\nOpen Register and Sign in page?'
